@@ -6,6 +6,8 @@
             "es6"
         ],
         "allowJs": true,
+        "moduleResolution": "Node",
+        // this option looks for the specific package in the node_modules folder
         // "outDir": "build",
         "rootDir": "src",
         "strict": true,
