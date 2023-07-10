@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { User } from "../models";
+import generateToken from "../config/token";
 
 const RegisterUser = async (req: Request, res: Response) => {
     const { username, email, password, profilepic } = req.body;
@@ -28,6 +29,7 @@ const RegisterUser = async (req: Request, res: Response) => {
                 email: user.email,
                 password: user.password,
                 profilepic: user.profilepic,
+                // token: generateToken(user._id),
             });
         }
         else {
@@ -46,7 +48,7 @@ const LoginUser = async (req: Request, res: Response) => {
 
     const user = await User.findOne({ email });
 
-    if (user && (await user.password == password)) {
+    if (user && (user.password == password)) {
         console.log('User logged in');
         return res.status(200).json({
             _id: user._id,
@@ -56,6 +58,7 @@ const LoginUser = async (req: Request, res: Response) => {
             // token: generateToken(user._id),
         });
     }
+
     console.log('Invalid email or password');
     return res.status(401).json({ message: 'Invalid email or password' });
 };
