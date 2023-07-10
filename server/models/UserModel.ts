@@ -5,21 +5,18 @@ const UserSchema = new mongoose.Schema(
         username: {
             type: String,
             required: true,
-            unique: true,
-            trim: true,
             minlength: 3,
         },
         email: {
             type: String,
             required: true,
             unique: true,
-            trim: true,
         },
-        passwordHash: {
+        password: {
             type: String,
             required: true,
         },
-        profilePicture: {
+        profilepic: {
             type: String,
             default: "",
         },

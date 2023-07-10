@@ -2,6 +2,7 @@
 'use client'
 import Link from "next/link";
 import { useState } from "react";
+import axios from "axios";
 
 const Signup = () => {
 
@@ -10,7 +11,7 @@ const Signup = () => {
     const [password , setPassword] = useState("");
     const [profilepic , setProfilepic] = useState("");
 
-    const handlesubmit = (e: { preventDefault: () => void}) => {
+    const handlesubmit = async(e: { preventDefault: () => void}) => {
         e.preventDefault();
         const data = {
             username: username,
@@ -19,6 +20,9 @@ const Signup = () => {
             profilepic: profilepic
         }
         console.log(data);
+        const res = await axios.post('http://localhost:8000/api/user/', data);
+        console.log(res);
+        console.log("user created successfully")
     }
     
     return (
