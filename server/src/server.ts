@@ -8,10 +8,11 @@ const app = express();
 dotenv.config();
 connectDB();
 app.use(cors());
+app.use(express.json());
 
 app.listen(process.env.PORT, () => {
     console.log(`🚀 Server started on port ${process.env.PORT}`);
     }  
 );
 
-app.use('/api/user',UserRoutes)
+app.use('/api/user',UserRoutes);

@@ -20,7 +20,7 @@ const Signup = () => {
             profilepic: profilepic
         }
         console.log(data);
-        const res = await axios.post('http://localhost:8000/api/user/', data);
+        const res = await axios.post('http://localhost:8000/api/user', data);
         console.log(res);
         console.log("user created successfully")
     }

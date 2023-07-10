@@ -5,7 +5,6 @@ const UserSchema = new mongoose.Schema(
         username: {
             type: String,
             required: true,
-            minlength: 3,
         },
         email: {
             type: String,
@@ -19,6 +18,7 @@ const UserSchema = new mongoose.Schema(
         profilepic: {
             type: String,
             default: "",
+            required: false,
         },
     },
     { 
