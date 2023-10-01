@@ -1,3 +1,7 @@
+# SSL/TSL Certificates
+cert.pem
+key.pem
+
 # Logs
 logs
 *.log

@@ -20,7 +20,6 @@ if (useHttps) {
     httpsServer.listen(PORT, () => {
         console.log(`the https server is running on port ${PORT}`)
     })
-
 }
 
 else {
