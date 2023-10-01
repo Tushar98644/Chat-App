@@ -1,6 +1,5 @@
 # SSL/TSL Certificates
-cert.pem
-key.pem
+*.pem
 
 # Logs
 logs
