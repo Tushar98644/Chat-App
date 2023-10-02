@@ -33,5 +33,5 @@ process.on('uncaughtRejection',unhandledRejection);
 process.on('uncaughtException',uncaughtException);
 
 app.use('/', (req, res) => {
-    res.send('hello world! Finally got the server running');
+    res.send('hello ! Finally got the server running!');
 })
