@@ -5,4 +5,5 @@ export interface IconProps {
 export interface sidebarProps {
     icon : React.ReactNode;
     background?: string;
+    color?: string;
 }

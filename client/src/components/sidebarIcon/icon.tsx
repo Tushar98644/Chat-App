@@ -16,17 +16,18 @@ const Icon = styled.div<IconProps>`
     &:hover {
         background-color: rgb(32, 112, 198);
         opacity: 0.8;
+        color: #fff;
 ;
     }
-    color: white;
+    color: ${props=>props.color};
     svg{
         font-size: 1.9vw;
     }
 `;
 
-export const SidebarIcon = ({icon,background}:sidebarProps) => {
+export const SidebarIcon = ({icon,background,color}:sidebarProps) => {
     return ( 
-        <Icon background={background}>
+        <Icon background={background} color={color}>
             {icon}
         </Icon>
      );

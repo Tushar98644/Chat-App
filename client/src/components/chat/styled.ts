@@ -33,3 +33,14 @@ export const SearchDiv = styled.div`
     width: 100%;
     `;
 
+export const DefaultScreen = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    margin: 0 2vw 0 2vw;
+    opacity: 0.5;
+    `;
+

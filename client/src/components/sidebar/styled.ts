@@ -9,4 +9,5 @@ export const MainDiv = styled.div`
     align-items: center;
     justify-content: space-between;
     padding-top: 18vw;
+    padding-bottom: 2vw;
     `;
