@@ -1,10 +1,15 @@
 'use client'
-import { ChatDiv } from "./styled";
+import { ChatDiv, ChatWindow, ChatSearch, SearchDiv } from "./styled";
 
 export const Chat = () => {
-    return ( 
-        <ChatDiv> 
-            chat
+    return (
+        <ChatDiv>
+            <SearchDiv>
+                <ChatSearch placeholder={'search'}>
+                </ChatSearch>
+            </SearchDiv>
+            <ChatWindow>
+            </ChatWindow>
         </ChatDiv>
-     );
+    );
 }
