@@ -1,7 +1,11 @@
+'use client'
+import { MainDiv } from "./styled";
+
 export const SideBar = () => {
     return (
-        <div>
-            sidebar
-        </div>
+        <MainDiv>
+                sidebar
+         </MainDiv>
+
       );
 }

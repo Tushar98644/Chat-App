@@ -1,7 +1,10 @@
+'use client'
+import { ChatDiv } from "./styled";
+
 export const Chat = () => {
     return ( 
-        <div>
+        <ChatDiv> 
             chat
-        </div>
+        </ChatDiv>
      );
 }
