@@ -13,6 +13,9 @@
         "strict": true,
         "noImplicitAny": true,
         "esModuleInterop": true,
-        "resolveJsonModule": true
+        "resolveJsonModule": true,
+        "paths": {
+            "@/*": ["./src/*"]
+          }
     }
 }

@@ -1,8 +1,9 @@
 import https from 'https'
 import fs from 'fs'
-import express from 'express'
+import express, { Request, Response } from 'express'
 import * as dotenv from 'dotenv'
 import { error, uncaughtException, unhandledRejection } from './middlewares/errorHandler';
+import { initializePassport } from '@/config/passportConfig';
 
 const app = express();
 dotenv.config();
@@ -18,7 +19,7 @@ if (useHttps) {
     const httpsServer = https.createServer(credentials, app);
 
     httpsServer.listen(PORT, () => {
-        console.log(`the https server is running on port ${PORT}`)
+        console.log(`the Https server is running on port ${PORT}`)
     })
 }
 
@@ -32,6 +33,10 @@ app.use(error);
 process.on('uncaughtRejection',unhandledRejection);
 process.on('uncaughtException',uncaughtException);
 
-app.use('/', (req, res) => {
+initializePassport(app);
+
+app.use('/', (req : Request, res:Response) => {
     res.send('hello ! Finally got the server running!');
 })
+
+// app.use('/api/auth',authRoutes);
