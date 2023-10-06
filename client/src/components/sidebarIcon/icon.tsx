@@ -8,7 +8,7 @@ const Icon = styled.div<IconProps>`
     width: 4.5vw;
     height: 4.5vw;
     border-radius: 1.4rem;
-    background: ${props=>props.background || "#2070c6"};
+    background: ${({background})=>background || "#2070c6"};
     margin: 1.5rem;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
@@ -19,7 +19,7 @@ const Icon = styled.div<IconProps>`
         color: #fff;
 ;
     }
-    color: ${props=>props.color};
+    color: ${({color})=>color};
     svg{
         font-size: 1.9vw;
     }

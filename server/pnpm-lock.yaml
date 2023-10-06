@@ -1,6 +1,9 @@
 lockfileVersion: '6.0'
 
 dependencies:
+  bcryptjs:
+    specifier: ^2.4.3
+    version: 2.4.3
   dotenv:
     specifier: ^16.3.1
     version: 16.3.1
@@ -30,6 +33,9 @@ dependencies:
     version: 1.0.0
 
 devDependencies:
+  '@types/bcryptjs':
+    specifier: ^2.4.4
+    version: 2.4.4
   '@types/cors':
     specifier: ^2.8.13
     version: 2.8.13
@@ -48,6 +54,15 @@ devDependencies:
   '@types/passport':
     specifier: ^1.0.13
     version: 1.0.13
+  '@types/passport-github':
+    specifier: ^1.1.10
+    version: 1.1.10
+  '@types/passport-google-oauth20':
+    specifier: ^2.0.12
+    version: 2.0.12
+  '@types/passport-local':
+    specifier: ^1.0.36
+    version: 1.0.36
   cors:
     specifier: ^2.8.5
     version: 2.8.5
@@ -100,6 +115,10 @@ packages:
 
   /@tsconfig/node16@1.0.4:
     resolution: {integrity: sha512-vxhUy4J8lyeyinH7Azl1pdd43GJhZH/tP2weN8TntQblOY+A0XbT8DJk1/oCPuOOyg/Ja757rG0CgHcWC8OfMA==}
+    dev: true
+
+  /@types/bcryptjs@2.4.4:
+    resolution: {integrity: sha512-9wlJI7k5gRyJEC4yrV7DubzNQFTPiykYxUA6lBtsk5NlOfW9oWLJ1HdIA4YtE+6C3i3mTpDQQEosJ2rVZfBWnw==}
     dev: true
 
   /@types/body-parser@1.19.3:
@@ -165,6 +184,51 @@ packages:
 
   /@types/node@20.4.1:
     resolution: {integrity: sha512-JIzsAvJeA/5iY6Y/OxZbv1lUcc8dNSE77lb2gnBH+/PJ3lFR1Ccvgwl5JWnHAkNHcRsT0TbpVOsiMKZ1F/yyJg==}
+
+  /@types/oauth@0.9.2:
+    resolution: {integrity: sha512-Nu3/abQ6yR9VlsCdX3aiGsWFkj6OJvJqDvg/36t8Gwf2mFXdBZXPDN3K+2yfeA6Lo2m1Q12F8Qil9TZ48nWhOQ==}
+    dependencies:
+      '@types/node': 20.4.1
+    dev: true
+
+  /@types/passport-github@1.1.10:
+    resolution: {integrity: sha512-fj3FV2uWnE70S8x5afP70TgG8REEvLm2MWNocD28rLZhU4vmf/vchtG3yPrCZOGrme+Csbf1UO/KXZhvCqBElQ==}
+    dependencies:
+      '@types/express': 4.17.18
+      '@types/passport': 1.0.13
+      '@types/passport-oauth2': 1.4.13
+    dev: true
+
+  /@types/passport-google-oauth20@2.0.12:
+    resolution: {integrity: sha512-+MBVB8uYd8mMZYvTwYChCa2LBGVK9FMwdK5TtcNHMeTL6qBZ3QW0HeUtZiAlwgkw2LYM0Btlzyb19EA8ysm13g==}
+    dependencies:
+      '@types/express': 4.17.18
+      '@types/passport': 1.0.13
+      '@types/passport-oauth2': 1.4.13
+    dev: true
+
+  /@types/passport-local@1.0.36:
+    resolution: {integrity: sha512-NoL8ynRuzZHw/xUkLOTCscykNYlu6EasXKrGizF0ibMB+vq//big56+jgS2jtd9DZwL7q5fSJZDrZusex72Fjg==}
+    dependencies:
+      '@types/express': 4.17.18
+      '@types/passport': 1.0.13
+      '@types/passport-strategy': 0.2.36
+    dev: true
+
+  /@types/passport-oauth2@1.4.13:
+    resolution: {integrity: sha512-SKjbAFSgV2ys7Vf8+BbQ2Fq09CZGi72xaHqbWPEKhi7czPSC0ff4gXuQEY3XXAuTynPjwj6dlL3YAta9M2K0AQ==}
+    dependencies:
+      '@types/express': 4.17.18
+      '@types/oauth': 0.9.2
+      '@types/passport': 1.0.13
+    dev: true
+
+  /@types/passport-strategy@0.2.36:
+    resolution: {integrity: sha512-hotVZuaCt04LJYXfZD5B+5UeCcRVG8IjKaLLGTJ1eFp0wiFQA2XfsqslGGInWje+OysNNLPH/ducce5GXHDC1Q==}
+    dependencies:
+      '@types/express': 4.17.18
+      '@types/passport': 1.0.13
+    dev: true
 
   /@types/passport@1.0.13:
     resolution: {integrity: sha512-XXURryL+EZAWtbQFOHX1eNB+RJwz5XMPPz1xrGpEKr2xUZCXM4NCPkHMtZQ3B2tTSG/1IRaAcTHjczRA4sSFCw==}
@@ -252,6 +316,10 @@ packages:
   /base64url@3.0.1:
     resolution: {integrity: sha512-ir1UPr3dkwexU7FdV8qBBbNDRUhMmIekYMFZfi+C/sLNnRESKPl23nB9b2pltqfOQNnGzsDdId90AEtG5tCx4A==}
     engines: {node: '>=6.0.0'}
+    dev: false
+
+  /bcryptjs@2.4.3:
+    resolution: {integrity: sha512-V/Hy/X9Vt7f3BbPJEi8BdVFMByHi+jNXrYkW3huaybV/kQ0KJg0Y6PkEMbn+zeT+i+SiKZ/HMqJGIIt4LZDqNQ==}
     dev: false
 
   /binary-extensions@2.2.0:

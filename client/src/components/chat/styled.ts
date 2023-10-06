@@ -40,6 +40,7 @@ export const DefaultScreen = styled.div`
     justify-content: center;
     height: 100%;
     width: 100%;
+    text-align: center;
     margin: 0 2vw 0 2vw;
     opacity: 0.5;
     `;

@@ -3,10 +3,21 @@ import fs from 'fs'
 import express, { Request, Response } from 'express'
 import * as dotenv from 'dotenv'
 import { error, uncaughtException, unhandledRejection } from './middlewares/errorHandler';
-import { initializePassport } from '@/config/passportConfig';
+import { initializePassport } from './config/passportConfig';
+import passport from 'passport';
+import { googleStrategy, localStrategy, githubStrategy } from './middlewares/passport';
+import { User } from './models/userModel';
+import { authRoutes } from './routes/authRoutes';
+import cors from 'cors';
 
 const app = express();
 dotenv.config();
+app.use(express.json());
+app.use(cors({
+    origin: '*/',
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE']
+}));
 
 const PORT = process.env.port || 8000;
 
@@ -30,13 +41,28 @@ else {
 }
 
 app.use(error);
-process.on('uncaughtRejection',unhandledRejection);
-process.on('uncaughtException',uncaughtException);
+process.on('uncaughtRejection', unhandledRejection);
+process.on('uncaughtException', uncaughtException);
 
 initializePassport(app);
 
-app.use('/', (req : Request, res:Response) => {
-    res.send('hello ! Finally got the server running!');
-})
+passport.use(githubStrategy);
+passport.use(localStrategy);
+passport.use(googleStrategy);
 
-// app.use('/api/auth',authRoutes);
+passport.serializeUser(function (user, done) {
+    // @ts-ignore
+    done(null, user.id);
+});
+
+passport.deserializeUser(function (id, done) {
+    User.findById(id, function (err: Error, user: Express.User) {
+        done(err, user);
+    });
+});
+
+// app.use('/', (req: Request, res: Response) => {
+//     res.send('hello ! Finally got the server running!');
+// })
+
+app.use('/auth',authRoutes);
