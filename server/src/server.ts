@@ -1,14 +1,16 @@
 import https from 'https'
+import http from 'http'
 import fs from 'fs'
 import express, { Request, Response } from 'express'
 import * as dotenv from 'dotenv'
 import { error, uncaughtException, unhandledRejection } from './middlewares/errorHandler';
 import { initializePassport } from './config/passportConfig';
 import passport from 'passport';
-import { googleStrategy, localStrategy, githubStrategy } from './middlewares/passport';
+import { googleStrategy, localStrategy, githubStrategy, appleStrategy } from './middlewares/passport';
 import { User } from './models/userModel';
 import { authRoutes } from './routes/authRoutes';
 import cors from 'cors';
+import { Server } from 'socket.io';
 
 const app = express();
 dotenv.config();
@@ -35,8 +37,8 @@ if (useHttps) {
 }
 
 else {
-    app.listen(PORT, () => {
-        console.log(`the server is running on port ${PORT}`)
+    const httpsServer=http.createServer(app).listen(PORT, () => {
+        console.log(`the Http server is running on port ${PORT}`)
     })
 }
 
@@ -49,6 +51,7 @@ initializePassport(app);
 passport.use(githubStrategy);
 passport.use(localStrategy);
 passport.use(googleStrategy);
+passport.use(appleStrategy);
 
 passport.serializeUser(function (user, done) {
     // @ts-ignore
@@ -60,9 +63,5 @@ passport.deserializeUser(function (id, done) {
         done(err, user);
     });
 });
-
-// app.use('/', (req: Request, res: Response) => {
-//     res.send('hello ! Finally got the server running!');
-// })
 
 app.use('/auth',authRoutes);

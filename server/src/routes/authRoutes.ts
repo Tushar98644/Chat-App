@@ -1,5 +1,8 @@
 import { Router } from "express";
 import passport from "passport";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 const router = Router();
 
@@ -14,27 +17,36 @@ router.post('/login', passport.authenticate('local-login', {
 }));
 
 router.get('/google',
-    passport.authenticate('google', { scope: ['email','profile'] }));
+    passport.authenticate('google', { scope: ['email', 'profile'] }));
 
 router.get('/google/callback',
-    passport.authenticate('google', { 
+    passport.authenticate('google', {
         failureRedirect: '/',
-        successRedirect: 'http://localhost:3000/'
-     }),
+        successRedirect: 'http://localhost:3000'
+    }),
     // function (req, res) {
     //     res.redirect('http://localhost:3000');
     // }
-    );
+);
 
 router.get('/github',
     passport.authenticate('github'));
 
 router.get('/github/callback',
-    passport.authenticate('github', { failureRedirect: '/login' }),
-    // function (req, res) {
-    //     res.redirect('/');
-    // }
-    );
+    passport.authenticate('github',
+        {
+            failureRedirect: '/login',
+            successRedirect: 'http://localhost:3000'
+        }
+    ),
+);
+
+router.get('/apple', passport.authenticate('apple', { scope: ['email', 'profile'] }));
+router.get('/apple/callback',passport.authenticate('apple', { 
+    failureRedirect: '/login' ,
+    successRedirect: 'http://localhost:3000'
+},
+));
 
 
 export { router as authRoutes };
