@@ -14,7 +14,6 @@ export const PageContainer = styled.section`
 
 export const Logo = styled.a`
   display: flex;
-  items: center;
   margin-bottom: 1rem;
   font-size: 2rem;
   font-weight: bold;

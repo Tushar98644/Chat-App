@@ -10,7 +10,7 @@ import { googleStrategy, localStrategy, githubStrategy, appleStrategy } from './
 import { User } from './models/userModel';
 import { authRoutes } from './routes/authRoutes';
 import cors from 'cors';
-import { Server } from 'socket.io';
+import { Server, Socket } from 'socket.io';
 
 const app = express();
 dotenv.config();
@@ -23,24 +23,33 @@ app.use(cors({
 
 const PORT = process.env.port || 8000;
 
+const privateKey = fs.readFileSync('src/key.pem', 'utf8');
+const certificate = fs.readFileSync('src/cert.pem', 'utf8');
+const credentials = { key: privateKey, cert: certificate };
+
 const useHttps = process.env.USE_HTTPS === 'true';
+const server = useHttps ? https.createServer(credentials, app) : http.createServer(app);
 
-if (useHttps) {
-    const privateKey = fs.readFileSync('src/key.pem', 'utf8');
-    const certificate = fs.readFileSync('src/cert.pem', 'utf8');
-    const credentials = { key: privateKey, cert: certificate };
-    const httpsServer = https.createServer(credentials, app);
+const io = new Server(server , {
+    cors: {
+        origin: '*',
+        methods: ['GET', 'POST', 'PUT', 'DELETE']
+    }
+});
 
-    httpsServer.listen(PORT, () => {
-        console.log(`the Https server is running on port ${PORT}`)
+io.on('connection', (socket:Socket) => {
+    console.log(`socket connected : ${socket.id}`);
+
+    socket.on('chat',(payload)=>{
+        console.log("payload",payload);
+        io.emit('chat',payload);
     })
 }
+);
 
-else {
-    const httpsServer=http.createServer(app).listen(PORT, () => {
-        console.log(`the Http server is running on port ${PORT}`)
-    })
-}
+server.listen(PORT, () => {
+    console.log(`the server is running on port ${PORT}`)
+})
 
 app.use(error);
 process.on('uncaughtRejection', unhandledRejection);
@@ -55,7 +64,7 @@ passport.use(appleStrategy);
 
 passport.serializeUser(function (user, done) {
     // @ts-ignore
-    done(null, user.id);
+    done(null, user?.id);
 });
 
 passport.deserializeUser(function (id, done) {
@@ -63,5 +72,8 @@ passport.deserializeUser(function (id, done) {
         done(err, user);
     });
 });
-
-app.use('/auth',authRoutes);
+app.use('/', (req: Request, res: Response) => {
+    res.send('Hello World');
+}
+);
+app.use('/auth', authRoutes);

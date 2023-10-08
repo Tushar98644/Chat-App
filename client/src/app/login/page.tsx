@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 'use client'
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
@@ -38,13 +39,11 @@ const LogoLink = styled.a`
 
 const StyledContainer = styled.div`
   width: 100%;
-  background-color: #fff; /* You can replace with your desired background color */
+  background-color: #fff;
   border-radius: 0.5rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-top: 0; /* Adjust the margin-top as needed */
-  max-width: 100%; /* Adjust the max-width as needed */
-  
-  /* Add dark mode styles here if needed */
+  margin-top: 0;
+  max-width: 100%; 
 `;
 
 const LoginPage = () => {
